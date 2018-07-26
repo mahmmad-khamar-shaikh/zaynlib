@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '../../../../node_modules/@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public isError = false;
+  public customErrorMessage: string;
   form: FormGroup;                    // {1}
   private formSubmitAttempt: boolean; // {2}
 
@@ -34,11 +36,33 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       console.log(this.form.value);
-      if (this.authService.login(this.form.value)) {
-        console.log('indise logged in');
+      this.authService.login(this.form.value).then(res => {
+        console.log('response', res);
         this.router.navigate(['/dashboard']);
-      } // {7}
+        this.isError = false;
+      })
+        .catch(err => {
+          console.log('err=>', err);
+          this.customErrorMessage = 'Username or Password incorrect.';
+          this.isError = true;
+        });
+
     }
     this.formSubmitAttempt = true;             // {8}
+  }
+  loginWithGoogle() {
+
+    console.log(this.form.value);
+    this.authService.signinWithGoogle().then((res) => {
+      console.log(res);
+      this.router.navigate(['/dashboard']);
+    }
+    ).catch((err) => {
+      console.log('error', err);
+    });
+
+
+
+
   }
 }

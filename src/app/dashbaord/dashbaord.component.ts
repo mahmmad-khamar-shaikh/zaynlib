@@ -13,6 +13,6 @@ export class DashbaordComponent implements OnInit {
   ngOnInit() {
   }
   logout() {
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 }

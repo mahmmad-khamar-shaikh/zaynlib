@@ -5,8 +5,9 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
 
 export const routes = [
-    { 'path': '', component: HomeComponent },
+    { 'path': 'home', component: HomeComponent },
     { 'path': 'dashboard', component: DashbaordComponent },
+    { 'path': '', redirectTo: 'home', pathMatch: 'full' },
     { 'path': '**', component: PageNotFoundComponent }];
 
 @NgModule({

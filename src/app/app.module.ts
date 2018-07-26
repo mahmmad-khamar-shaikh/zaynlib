@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+
 
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -13,6 +17,8 @@ import { AppMaterialModule } from './app-material.module';
 import { LoginComponent } from './shared/login/login.component';
 import { AuthService } from './shared/login/auth.service';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
+import { ManageDashboardComponent } from './manage-dashboard/manage-dashboard.component';
+import { BookBoardComponent } from './book-board/book-board.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,9 @@ import { DashbaordComponent } from './dashbaord/dashbaord.component';
     HomeComponent,
     PageNotFoundComponent,
     LoginComponent,
-    DashbaordComponent
+    DashbaordComponent,
+    ManageDashboardComponent,
+    BookBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +37,9 @@ import { DashbaordComponent } from './dashbaord/dashbaord.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppMaterialModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireAuthModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AuthService],
