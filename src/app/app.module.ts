@@ -19,6 +19,7 @@ import { AuthService } from './shared/login/auth.service';
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { ManageDashboardComponent } from './manage-dashboard/manage-dashboard.component';
 import { BookBoardComponent } from './book-board/book-board.component';
+import { SignupComponent } from './shared/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BookBoardComponent } from './book-board/book-board.component';
     LoginComponent,
     DashbaordComponent,
     ManageDashboardComponent,
-    BookBoardComponent
+    BookBoardComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

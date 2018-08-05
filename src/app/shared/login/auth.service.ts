@@ -3,8 +3,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { promise } from 'protractor';
+import { IUser } from '../../types';
 @Injectable()
 export class AuthService {
+    public loggedInUser: IUser;
     user: Observable<firebase.User>;
     private userDetails: firebase.User = null;
     constructor(private _angularFireAuth: AngularFireAuth, private router: Router) {
@@ -13,7 +16,7 @@ export class AuthService {
             (user) => {
                 if (user) {
                     this.userDetails = user;
-                    console.log(this.userDetails);
+                    console.log('userDetails --->', this.userDetails);
                 } else {
                     this.userDetails = null;
                 }
@@ -28,6 +31,11 @@ export class AuthService {
 
         }
     }
+
+    signUp(value: any): Promise<firebase.auth.UserCredential> {
+        return this._angularFireAuth.auth.createUserWithEmailAndPassword(value.userName, value.password);
+    }
+
     signinWithGoogle(): Promise<firebase.auth.UserCredential> {
 
         return this._angularFireAuth.auth.signInWithPopup(

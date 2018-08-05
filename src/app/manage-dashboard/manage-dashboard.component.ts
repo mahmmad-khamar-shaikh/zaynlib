@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/login/auth.service';
+import { Roles } from '../types/customTypes';
+import { IRoles } from 'src/app/types/roles.interface';
 
 @Component({
   selector: 'app-manage-dashboard',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-dashboard.component.css']
 })
 export class ManageDashboardComponent implements OnInit {
-
-  constructor() { }
+  public roles: IRoles;
+  constructor(private _authService: AuthService) { }
 
   ngOnInit() {
+    this.roles = this._authService
+      && this._authService.loggedInUser
+      && this._authService.loggedInUser.role;
   }
 
 }

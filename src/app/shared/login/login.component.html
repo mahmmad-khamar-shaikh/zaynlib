@@ -23,12 +23,13 @@
 
       </form>
 
-     
+
 
     </mat-card-content>
     <mat-card-footer>
-      <button mat-button color="accent"  >Sign Up</button>
-      <button mat-button color="warn">Forgot Password</button>
+      <button mat-button color="accent" [routerLink]="['/home/signup']">
+        Sign Up</button>
+      <button mat-button color="warn" [routerLink]="['/passord']" >Forgot Password</button>
     </mat-card-footer>
   </mat-card>
 </div>

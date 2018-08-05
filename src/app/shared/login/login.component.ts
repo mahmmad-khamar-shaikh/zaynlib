@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { User, Roles } from '../../types/customTypes';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +39,21 @@ export class LoginComponent implements OnInit {
       console.log(this.form.value);
       this.authService.login(this.form.value).then(res => {
         console.log('response', res);
+        this.authService.loggedInUser = new User();
+        this.authService.loggedInUser.Id = res.user.uid;
+        this.authService.loggedInUser.Name = res.user.displayName;
+        this.authService.loggedInUser.email = res.user.email;
+        this.authService.loggedInUser.role = new Roles();
+        if (res.user.email.toLowerCase() === 'admin@gmail.com') {
+          this.authService.loggedInUser.role.subscriber = false;
+          this.authService.loggedInUser.role.admin = true;
+          this.authService.loggedInUser.role.superAdmin = true;
+        } else {
+          this.authService.loggedInUser.role.subscriber = true;
+          this.authService.loggedInUser.role.admin = false;
+          this.authService.loggedInUser.role.superAdmin = false;
+        }
+
         this.router.navigate(['/dashboard']);
         this.isError = false;
       })
@@ -54,7 +70,7 @@ export class LoginComponent implements OnInit {
 
     console.log(this.form.value);
     this.authService.signinWithGoogle().then((res) => {
-      console.log(res);
+      console.log('firstGot----------->', res);
       this.router.navigate(['/dashboard']);
     }
     ).catch((err) => {
