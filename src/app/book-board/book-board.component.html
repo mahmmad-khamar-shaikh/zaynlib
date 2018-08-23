@@ -20,30 +20,51 @@
     <ng-container matColumnDef="isAvailable">
       <th mat-header-cell *matHeaderCellDef> Available </th>
       <td mat-cell *matCellDef="let element">
-        <mat-slide-toggle class="example-margin" color="green" [checked]="element.IsAvailable" [disabled]="element.IsAvailable">
+        <mat-slide-toggle class="example-margin" color="green" [checked]="!element.IsAvailable" (change)="onChange($event,element.Id)"
+          [disabled]="!element.IsAvailable">
         </mat-slide-toggle>
       </td>
     </ng-container>
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
         <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <div class="col-sm-3">
+          <!-- <div class="col-sm-3">
             <div class="example-element-diagram">
               <div class="example-element-position"> </div>
             </div>
-          </div>
-          <div class="col-sm-8">
-            <div> Title : {{element.Title}} </div>
-            <div *ngIf="!element?.IsAvailable">Assigned To : {{element.Assignee}} </div>
-            <div> Owner : {{element.Owner.Name}} </div>
+          </div> -->
 
 
-            <div>Is Available : {{element.IsAvailable}} </div>
-            <div class="example-element-description">
-              {{element.SubTitle}}
-              <span class="example-element-description-attribution"> -- {{element.Author}} </span>
-            </div>
-          </div>
+          <mat-list style="width:100%">
+            <mat-list-item style="font-size:12px !important;">
+              <span style="font-weight: bold;"> Title </span> : {{element.Title}} </mat-list-item>
+            <mat-divider *ngIf="element?.SubTitle?.length >0"></mat-divider>
+            <mat-list-item *ngIf="element?.SubTitle?.length >0" style="font-size:12px !important;">
+              <span style="font-weight: bold;"> SubTitle: </span>  {{element.SubTitle}}</mat-list-item>
+            <mat-divider *ngIf="!element?.IsAvailable"></mat-divider>
+            <mat-list-item *ngIf="!element?.IsAvailable" style="font-size:12px !important;">
+              <span  style="font-weight: bold;">Assigned To</span> : {{element.Assignee}} 
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item style="font-size:12px !important;">
+              <span style="font-weight: bold;"> Owner </span> : {{element.Owner.Name}}
+            </mat-list-item>
+            <mat-divider ></mat-divider>
+            <mat-list-item style="font-size:12px !important;" >
+              <span>
+                <span style="font-weight: bold;">Is Available : </span>
+                <span class="dot" [style.background-color]="element.IsAvailable? '#008000' : '#bbb'"></span>
+              </span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item style="font-size:12px !important;">
+              <span class="example-element-description-attribution">
+                <span style="font-weight: bold;"> By </span> -- {{element.Author}} </span>
+            </mat-list-item>
+          </mat-list>
+
+
+
         </div>
       </td>
     </ng-container>

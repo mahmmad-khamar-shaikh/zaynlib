@@ -1,185 +1,253 @@
-//  {
-//    {
-//      Id: 1,
-//      "assignee": "Shaikh",
-//      title: 'The proagmatic programmer',
-//      isAvailable: false,
-//      owner: 'Amol Jadhav',
-//      author: 'Andy Hunt, Dave Thomas'
-//    }, {
-//      Id: 2,
-//      assignee: '',
-//      title: 'The Art of Agile Development',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'James Shore',
-//      subTitle: ''
-//    }, {
-//      Id: 3,
-//      assignee: 'ravi',
-//      title: 'Clean Code',
-//      isAvailable: false,
-//      owner: 'Amol Jadhav',
-//      author: 'Robert Cecil Martin'
-//    }, {
-//      Id: 4,
-//      assignee: '',
-//      title: 'Clean Architecture',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Robert Cecil Martin'
-//    }, {
-//      Id: 5,
-//      assignee: '',
-//      title: 'Head First JavaScript Programming',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Eric Freeman, Elisabeth Freeman'
-//    }, {
-//      Id: 6,
-//      assignee: '',
-//      title: 'Spring in Action',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Craig Walls'
-//    }, {
-//      Id: 7,
-//      assignee: '',
-//      title: 'Developing Backbone.js Application',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Addy Osmani',
-//      subTitle: 'Building Better JavaScript Applications'
-//    }, {
-//      Id: 2,
-//      assignee: '',
-//      title: 'JUnit in Action',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Vincent Massol, Ted Husted',
-//      subTitle: ''
-//    }, {
-//      Id: 8,
-//      assignee: '',
-//      title: 'AngularJS',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Green & Seshadri'
-//    }, {
-//      Id: 9,
-//      assignee: '',
-//      title: 'Clean Code Architecture',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Rob Martin'
-//    }, {
-//      Id: 10,
-//      assignee: '',
-//      title: 'Selenium Testing Tools Cookbook',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Unmesh Gundecha'
-//    }, {
-//      Id: 11,
-//      assignee: 'Vaibhav',
-//      title: 'You Dont Know JS',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Kyle Simpson',
-//      subTitle: 'Async & Performance'
-//    }, {
-//      Id: 12,
-//      assignee: '',
-//      title: 'You Dont Know JS',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Kyle Simpson',
-//      subTitle: 'Up & Going'
-//    }, {
-//      Id: 13,
-//      assignee: '',
-//      title: 'NoSQL Distilled',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Martin Fowler, Pramod J. Sadalage',
-//      subTitle: 'A Brief Guide to the Emerging World of Polyglot Persistence'
-//    }
+ [{
+     "Id": 1,
+     "Assignee": "Shaikh",
+     "Title": "The proagmatic programmer",
+     "IsAvailable": false,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Andy Hunt, Dave Thomas"
+   }, {
+     "Id": 2,
+     "Assignee": "",
+     "Title": "The Art of Agile Development",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "James Shore",
+     "SubTitle": ""
+   }, {
+     "Id": 3,
+     "Assignee": "ravi",
+     "Title": "Clean Code",
+     "IsAvailable": false,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Robert Cecil Martin"
+   }, {
+     "Id": 4,
+     "Assignee": "",
+     "Title": "Clean Architecture",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Robert Cecil Martin"
+   }, {
+     "Id": 5,
+     "Assignee": "",
+     "Title": "Head First JavaScript Programming",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Eric Freeman, Elisabeth Freeman"
+   }, {
+     "Id": 6,
+     "Assignee": "",
+     "Title": "Spring in Action",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Craig Walls"
+   }, {
+     "Id": 7,
+     "Assignee": "",
+     "Title": "Developing Backbone.js Application",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Addy Osmani",
+     "SubTitle": "Building Better JavaScript Applications"
+   }, {
+     "Id": 2,
+     "Assignee": "",
+     "Title": "JUnit in Action",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Vincent Massol, Ted Husted",
+     "SubTitle": ""
+   }, {
+     "Id": 8,
+     "Assignee": "",
+     "Title": "AngularJS",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Green & Seshadri"
+   }, {
+     "Id": 9,
+     "Assignee": "",
+     "Title": "Clean Code Architecture",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Rob Martin"
+   }, {
+     "Id": 10,
+     "Assignee": "",
+     "Title": "Selenium Testing Tools Cookbook",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Unmesh Gundecha"
+   }, {
+     "Id": 11,
+     "Assignee": "Vaibhav",
+     "Title": "You Dont Know JS",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Kyle Simpson",
+     "SubTitle": "Async & Performance"
+   }, {
+     "Id": 12,
+     "Assignee": "",
+     "Title": "You Dont Know JS",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Kyle Simpson",
+     "SubTitle": "Up & Going"
+   }, {
+     "Id": 13,
+     "Assignee": "",
+     "Title": "NoSQL Distilled",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Martin Fowler, Pramod J. Sadalage",
+     "SubTitle": "A Brief Guide to the Emerging World of Polyglot Persistence"
+   }
 
-//    , {
-//      Id: 14,
-//      assignee: '',
-//      title: 'Spring Microservices',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Rajesh RV',
-//      subTitle: ''
-//    }, {
-//      Id: 15,
-//      assignee: '',
-//      title: 'Head First Design Patterns',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Elisabeth Freeman and Kathy Sierra',
-//      subTitle: 'Up & Going'
-//    }, {
-//      Id: 16,
-//      assignee: '',
-//      title: 'Bootstrap',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Jake Spurlock',
-//      subTitle: 'Responsive Web Development'
-//    }, {
-//      Id: 17,
-//      assignee: '',
-//      title: 'Soft Skills',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'John Z. Sonmez',
-//      subTitle: 'The Software Developers Life Manual'
-//    }, {
-//      Id: 18,
-//      assignee: '',
-//      title: 'Drive',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Daniel H. Pink',
-//      subTitle: 'The Surprising Truth About What Motivates Us'
-//    }, {
-//      Id: 19,
-//      assignee: '',
-//      title: 'Out of the Crisis',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: '  W. Edwards Deming',
-//      subTitle: ''
-//    }, {
-//      Id: 20,
-//      assignee: '',
-//      title: 'Blockchain Revolution',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Don Tapscott, Alex Tapscott',
-//      subTitle: 'How the Technology Behind Bitcoin Is Changing Money'
-//    }, {
-//      Id: 21,
-//      assignee: '',
-//      title: 'The Machine That Changed the World',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: ' James P. Womack',
-//      subTitle: ''
-//    }, {
-//      Id: 22,
-//      assignee: '',
-//      title: 'Leadership by the Book',
-//      isAvailable: true,
-//      owner: 'Amol Jadhav',
-//      author: 'Kenneth H. Blanchard, Bill Hybels, PHIL HODGES',
-//      subTitle: 'Tools to Transform Your Workplace'
-//    }
+   , {
+     "Id": 14,
+     "Assignee": "",
+     "Title": "Spring Microservices",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Rajesh RV",
+     "SubTitle": ""
+   }, {
+     "Id": 15,
+     "Assignee": "",
+     "Title": "Head First Design Patterns",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Elisabeth Freeman and Kathy Sierra",
+     "SubTitle": "Up & Going"
+   }, {
+     "Id": 16,
+     "Assignee": "",
+     "Title": "Bootstrap",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Jake Spurlock",
+     "SubTitle": "Responsive Web Development"
+   }, {
+     "Id": 17,
+     "Assignee": "",
+     "Title": "Soft Skills",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "John Z. Sonmez",
+     "SubTitle": "The Software Developers Life Manual"
+   }, {
+     "Id": 18,
+     "Assignee": "",
+     "Title": "Drive",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Daniel H. Pink",
+     "SubTitle": "The Surprising Truth About What Motivates Us"
+   }, {
+     "Id": 19,
+     "Assignee": "",
+     "Title": "Out of the Crisis",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "  W. Edwards Deming",
+     "SubTitle": ""
+   }, {
+     "Id": 20,
+     "Assignee": "",
+     "Title": "Blockchain Revolution",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Don Tapscott, Alex Tapscott",
+     "SubTitle": "How the Technology Behind Bitcoin Is Changing Money"
+   }, {
+     "Id": 21,
+     "Assignee": "",
+     "Title": "The Machine That Changed the World",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": " James P. Womack",
+     "SubTitle": ""
+   }, {
+     "Id": 22,
+     "Assignee": "",
+     "Title": "Leadership by the Book",
+     "IsAvailable": true,
+     "Owner": {
+       "Name": "Amol Jadhav",
+       "Email": "Amol.jadhav@yahoo.com"
+     },
+     "Author": "Kenneth H. Blanchard, Bill Hybels, PHIL HODGES",
+     "SubTitle": "Tools to Transform Your Workplace"
+   }
 
 
 
 
-//  }
+ ]

@@ -23,6 +23,11 @@ import { SignupComponent } from './shared/signup/signup.component';
 import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
 /** Material component */
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { BookBoardService } from './book-board/book-board.service';
+import { HttpClientModule } from '@angular/common/http';
+import {MatDividerModule} from '@angular/material/divider'
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     DashbaordComponent,
     ManageDashboardComponent,
     BookBoardComponent,
-    SignupComponent
+    SignupComponent,
+    UserProfileComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -41,14 +48,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatDividerModule,
+    MatListModule,
     MatSlideToggleModule,
     AppMaterialModule,
+    HttpClientModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireAuthModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthService, AngularFirestore],
+  providers: [AuthService, AngularFirestore, BookBoardService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

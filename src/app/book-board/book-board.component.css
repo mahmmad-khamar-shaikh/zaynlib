@@ -54,3 +54,9 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-description-attribution {
   opacity: 0.5;
 }
+.dot {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  display: inline-flex;
+}

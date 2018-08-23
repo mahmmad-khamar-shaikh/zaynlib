@@ -3,9 +3,10 @@ import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
 import { IBook } from '../types/book.interfacce';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map';
+import { AuthService } from '../shared/login/auth.service';
+import { BookBoardService } from './book-board.service';
 
 
 
@@ -27,14 +28,14 @@ export class BookBoardComponent implements OnInit {
   displayedColumns: string[] = ['Id', 'title', 'isAvailable'];
   dataSource: any; // MatTableDataSource<IBook>;
   expandedElement: IBook;
-  booksCollection: AngularFirestoreCollection<IBook>;
-  books: Observable<IBook[]>;
-  constructor(private _asfServiceReference: AngularFirestore) { }
+
+  constructor(private _bookBoardService: BookBoardService,
+    private _authService: AuthService) { }
 
   ngOnInit() {
-    this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
-    this.books = this.booksCollection.valueChanges();
-    this.books.subscribe(data => {
+    // this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
+    // this.books = this.booksCollection.valueChanges();
+    this._bookBoardService.loadBookData().subscribe(data => {
       console.log('booksData', data);
       this.dataSource = new MatTableDataSource(data);
     });
@@ -43,5 +44,10 @@ export class BookBoardComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  onChange(event, rowIdentifier) {
+    console.log(event);
+    console.log('row id ', rowIdentifier);
+    console.log('loggedInSerice ', this._authService.loggedInUser);
   }
 }
