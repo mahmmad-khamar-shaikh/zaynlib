@@ -20,13 +20,13 @@ export class BookBoardService implements OnInit {
     }
 
     loadBookData(): Observable<IBook[]> {
-        // this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
-        // return this.booksCollection.valueChanges();
+        this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
+        return this.booksCollection.valueChanges();
 
-        return this._httpService.get('../../assets/mock-data/books-list.json')
-            .map(data => {
-                return <IBook[]>data;
-            });
+        // return this._httpService.get('../../assets/mock-data/books-list.json')
+        //     .map(data => {
+        //         return <IBook[]>data;
+        //     });
     }
 
 }
