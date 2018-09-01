@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatBottomSheetModule } from '@angular/material';
 
 @NgModule({
     exports: [
@@ -18,7 +18,8 @@ import { MatTableModule } from '@angular/material';
         MatButtonModule,
         MatTabsModule,
         MatAutocompleteModule,
-        MatTableModule
+        MatTableModule,
+        MatBottomSheetModule
     ]
 })
 export class AppMaterialModule { }

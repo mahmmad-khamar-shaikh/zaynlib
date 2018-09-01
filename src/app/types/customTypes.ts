@@ -11,3 +11,9 @@ export class User implements IUser {
 export class Roles implements IRoles {
 
 }
+
+export class BookAllocationType {
+    proceedWithAllocation: boolean;
+    bookRefToBeAllocated: number;
+
+}

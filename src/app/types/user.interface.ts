@@ -3,9 +3,9 @@ import { IRoles } from './roles.interface';
 
 
 export interface IUser {
-    Id: string;
+    Id?: string;
     Name: string;
-    Group: IGroup;
-    role: IRoles;
+    Group?: IGroup;
+    role?: IRoles;
     email: string;
 }

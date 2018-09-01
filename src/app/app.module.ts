@@ -26,10 +26,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BookBoardService } from './book-board/book-board.service';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDividerModule} from '@angular/material/divider'
+import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material';
+import { BookAllocationBottomSheetComponent } from './book-board/book-allocation-bottom-sheet.component';
+import { EventService } from './shared/services/event-emitter.service';
 
 @NgModule({
+  entryComponents: [BookAllocationBottomSheetComponent],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -39,8 +42,10 @@ import { MatListModule } from '@angular/material';
     ManageDashboardComponent,
     BookBoardComponent,
     SignupComponent,
-    UserProfileComponent
-   
+    UserProfileComponent,
+    BookAllocationBottomSheetComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,7 @@ import { MatListModule } from '@angular/material';
     AngularFireAuthModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthService, AngularFirestore, BookBoardService ],
+  providers: [AuthService, AngularFirestore, BookBoardService,EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

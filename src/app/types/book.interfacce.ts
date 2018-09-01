@@ -2,13 +2,13 @@ import { IUser } from './user.interface';
 
 export interface IBook {
     Id: number;
-    title: string;
-    subTitle?: string;
-    summary?: string;
-    owner: string;
-    isAvailable: boolean;
-    assignee: string;
-    author: string;
+    Title: string;
+    SubTitle?: string;
+    Summary?: string;
+    Owner: IUser;
+    IsAvailable: boolean;
+    Assignee: string;
+    Author: string;
 
 }
 

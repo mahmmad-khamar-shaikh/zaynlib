@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatBottomSheet, MatBottomSheetConfig } from '@angular/material';
 import { IBook } from '../types/book.interfacce';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import 'rxjs/add/operator/map';
 import { AuthService } from '../shared/login/auth.service';
 import { BookBoardService } from './book-board.service';
-
-
-
+import { BookAllocationBottomSheetComponent } from './book-allocation-bottom-sheet.component';
+import { EventService } from '../shared/services/event-emitter.service';
+import { BookAllocationType } from '../types/customTypes';
+const defaultConfig = new MatBottomSheetConfig();
 @Component({
   selector: 'app-book-board',
   templateUrl: './book-board.component.html',
@@ -26,28 +27,58 @@ export class BookBoardComponent implements OnInit {
   public myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   displayedColumns: string[] = ['Id', 'title', 'isAvailable'];
-  dataSource: any; // MatTableDataSource<IBook>;
+  dataSource: MatTableDataSource<IBook>;
   expandedElement: IBook;
+  bookCollection: IBook[];
 
+  config: MatBottomSheetConfig = {
+    hasBackdrop: defaultConfig.hasBackdrop,
+    disableClose: true,
+    backdropClass: defaultConfig.backdropClass,
+    direction: 'ltr'
+  };
   constructor(private _bookBoardService: BookBoardService,
-    private _authService: AuthService) { }
+    private _authService: AuthService,
+    private bottomSheet: MatBottomSheet,
+    private _bookAllocationEventServiceRef: EventService,
+    private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit() {
     // this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
     // this.books = this.booksCollection.valueChanges();
     this._bookBoardService.loadBookData().subscribe(data => {
-      console.log('booksData', data);
-      this.dataSource = new MatTableDataSource(data);
+      this.bookCollection = data;
+      this.dataSource = new MatTableDataSource(this.bookCollection);
     });
+
+    this._bookAllocationEventServiceRef.bookAllocationService
+      .subscribe((payLoad: BookAllocationType) => {
+        this.bookCollection.map((selectedBookItem: IBook) => {
+
+          if (selectedBookItem.Id === payLoad.bookRefToBeAllocated) {
+            console.log('emitted item found ', selectedBookItem);
+            selectedBookItem.IsAvailable = !payLoad.proceedWithAllocation;
+          }
+        });
+        setTimeout(() => {
+          this.dataSource = new MatTableDataSource(this.bookCollection);
+          console.log('detected changed')
+          this.changeDetectorRefs.detectChanges();
+        }, 2000);
+        console.log('after modification ', this.bookCollection);
+      });
+
+
   }
-
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  onChange(event, rowIdentifier) {
-    console.log(event);
-    console.log('row id ', rowIdentifier);
-    console.log('loggedInSerice ', this._authService.loggedInUser);
+  onChange(_event, rowIdentifier) {
+    this.openBottomSheet(rowIdentifier.Id);
+  }
+  openBottomSheet(_rowIdentifier: any): void {
+
+    this.config.data = _rowIdentifier;
+    this.bottomSheet.open(BookAllocationBottomSheetComponent, this.config);
   }
 }
