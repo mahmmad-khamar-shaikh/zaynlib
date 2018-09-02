@@ -40,8 +40,7 @@ export class BookBoardComponent implements OnInit {
   constructor(private _bookBoardService: BookBoardService,
     private _authService: AuthService,
     private bottomSheet: MatBottomSheet,
-    private _bookAllocationEventServiceRef: EventService,
-    private changeDetectorRefs: ChangeDetectorRef) { }
+    private _bookAllocationEventServiceRef: EventService) { }
 
   ngOnInit() {
     // this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
@@ -54,17 +53,15 @@ export class BookBoardComponent implements OnInit {
     this._bookAllocationEventServiceRef.bookAllocationService
       .subscribe((payLoad: BookAllocationType) => {
         this.bookCollection.map((selectedBookItem: IBook) => {
-
           if (selectedBookItem.Id === payLoad.bookRefToBeAllocated) {
             console.log('emitted item found ', selectedBookItem);
             selectedBookItem.IsAvailable = !payLoad.proceedWithAllocation;
           }
         });
-        setTimeout(() => {
-          this.dataSource = new MatTableDataSource(this.bookCollection);
-          console.log('detected changed')
-          this.changeDetectorRefs.detectChanges();
-        }, 2000);
+        this.dataSource = new MatTableDataSource(this.bookCollection);
+        this._bookBoardService.updateBookData(this.bookCollection.find((book) => {
+          return book.Id === payLoad.bookRefToBeAllocated;
+        }), this._authService.loggedInUser.email);
         console.log('after modification ', this.bookCollection);
       });
 

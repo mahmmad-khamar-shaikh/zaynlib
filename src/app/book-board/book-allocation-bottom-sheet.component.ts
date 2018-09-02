@@ -10,9 +10,8 @@ export class BookAllocationBottomSheetComponent {
     constructor(private _bottomSheetRef: MatBottomSheetRef<BookAllocationBottomSheetComponent>,
         private _eventServiceRef: EventService) { }
 
-        assignBook() {
+    assignBook() {
 
-        console.log('in ON assignBook ', this._bottomSheetRef);
         this._bottomSheetRef.dismiss();
         this._eventServiceRef.bookAllocationService.emit({
             bookRefToBeAllocated: this._bottomSheetRef.containerInstance.bottomSheetConfig.data,

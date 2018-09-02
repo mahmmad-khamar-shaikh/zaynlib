@@ -16,7 +16,6 @@ export class BookBoardService implements OnInit {
     ) { }
 
     ngOnInit(): void {
-    
     }
 
     loadBookData(): Observable<IBook[]> {
@@ -27,6 +26,32 @@ export class BookBoardService implements OnInit {
         //     .map(data => {
         //         return <IBook[]>data;
         //     });
+    }
+    updateBookData(payloadToUpload: IBook, assignee: string) {
+        const filterCollection = this._asfServiceReference
+            .collection('books', ref => ref.where('Id', '==', payloadToUpload.Id));
+        const filterBook = filterCollection.snapshotChanges()
+            .map((actions) => {
+                return actions.map((action) => {
+                    const data = action.payload.doc.data() as IBook;
+                    const id = action.payload.doc.id;
+                    return {
+                        id, ...data
+                    };
+                });
+            });
+        filterBook.subscribe((filterData) => {
+            filterCollection.doc(filterData[0].id).update({ ...payloadToUpload, Assignee: assignee })
+                .then((success) => {
+                    console.log('record updated successfully ', success);
+                })
+                .catch(err => {
+                    console.log('Error Updating records ', err);
+                });
+        });
+
+
+
     }
 
 }
