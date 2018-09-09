@@ -30,6 +30,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material';
 import { BookAllocationBottomSheetComponent } from './book-board/book-allocation-bottom-sheet.component';
 import { EventService } from './shared/services/event-emitter.service';
+import { PassRecoveryComponent } from './shared/pass-recovery/pass-recovery.component';
 
 @NgModule({
   entryComponents: [BookAllocationBottomSheetComponent],
@@ -43,7 +44,8 @@ import { EventService } from './shared/services/event-emitter.service';
     BookBoardComponent,
     SignupComponent,
     UserProfileComponent,
-    BookAllocationBottomSheetComponent
+    BookAllocationBottomSheetComponent,
+    PassRecoveryComponent
 
 
   ],
@@ -63,7 +65,7 @@ import { EventService } from './shared/services/event-emitter.service';
     AngularFireAuthModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AuthService, AngularFirestore, BookBoardService,EventService],
+  providers: [AuthService, AngularFirestore, BookBoardService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

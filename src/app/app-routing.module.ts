@@ -5,11 +5,13 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { LoginComponent } from './shared/login/login.component';
 import { SignupComponent } from './shared/signup/signup.component';
+import { PassRecoveryComponent } from './shared/pass-recovery/pass-recovery.component';
 
 export const routes = [
     { 'path': 'home', component: HomeComponent, children: [
         { 'path': 'login', component: LoginComponent },
         { 'path': 'signup', component: SignupComponent },
+        { 'path': 'password', component: PassRecoveryComponent },
         { 'path': '', component: LoginComponent }
 
     ] },

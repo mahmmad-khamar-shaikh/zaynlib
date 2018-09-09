@@ -11,5 +11,11 @@ export class UserProfileComponent implements OnInit {
   constructor(private _authService: AuthService) { }
   ngOnInit() {
   }
+  /**
+   * Save User Profile.
+   */
+  saveUserProfile() {
+
+  }
 
 }
