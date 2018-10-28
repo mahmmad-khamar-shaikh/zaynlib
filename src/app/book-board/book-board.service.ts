@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 import { IBook } from '../types';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';

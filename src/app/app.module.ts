@@ -2,14 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-
 
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +15,7 @@ import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { ManageDashboardComponent } from './manage-dashboard/manage-dashboard.component';
 import { BookBoardComponent } from './book-board/book-board.component';
 import { SignupComponent } from './shared/signup/signup.component';
-import { AngularFirestore } from '../../node_modules/angularfire2/firestore';
+import { AngularFireModule, FirebaseAuth, FirebaseDatabase } from '@angular/fire';
 /** Material component */
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -31,6 +26,13 @@ import { MatListModule } from '@angular/material';
 import { BookAllocationBottomSheetComponent } from './book-board/book-allocation-bottom-sheet.component';
 import { EventService } from './shared/services/event-emitter.service';
 import { PassRecoveryComponent } from './shared/pass-recovery/pass-recovery.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { database } from 'firebase';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   entryComponents: [BookAllocationBottomSheetComponent],
@@ -60,12 +62,13 @@ import { PassRecoveryComponent } from './shared/pass-recovery/pass-recovery.comp
     MatSlideToggleModule,
     AppMaterialModule,
     HttpClientModule,
-    AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireAuthModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [AuthService, AngularFirestore, BookBoardService, EventService],
+  providers: [AuthService, BookBoardService, EventService, AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
