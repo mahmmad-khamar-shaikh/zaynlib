@@ -6,7 +6,7 @@ export class User implements IUser {
     Name: string;
     Group;
     role;
-    email: string;
+    Email: string;
 }
 export class Roles implements IRoles {
 

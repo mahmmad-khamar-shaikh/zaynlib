@@ -6,6 +6,8 @@ import { DashbaordComponent } from './dashbaord/dashbaord.component';
 import { LoginComponent } from './shared/login/login.component';
 import { SignupComponent } from './shared/signup/signup.component';
 import { PassRecoveryComponent } from './shared/pass-recovery/pass-recovery.component';
+import { BookBoardVanilaComponent } from './book-board/book-board-vanila.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
 
 export const routes = [
     { 'path': 'home', component: HomeComponent, children: [
@@ -16,6 +18,7 @@ export const routes = [
 
     ] },
     { 'path': 'dashboard', component: DashbaordComponent },
+    {'path' : 'book/:id', component: BookDetailComponent},
     { 'path': '', redirectTo: 'home', pathMatch: 'full' },
     { 'path': '**', component: PageNotFoundComponent }];
 

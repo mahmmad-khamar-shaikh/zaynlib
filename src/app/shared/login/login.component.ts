@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.authService.loggedInUser = new User();
         this.authService.loggedInUser.Id = res.user.uid;
         this.authService.loggedInUser.Name = res.user.displayName;
-        this.authService.loggedInUser.email = res.user.email;
+        this.authService.loggedInUser.Email = res.user.email;
         this.authService.loggedInUser.role = new Roles();
         if (res.user.email.toLowerCase() === 'admin@gmail.com') {
           this.authService.loggedInUser.role.subscriber = false;

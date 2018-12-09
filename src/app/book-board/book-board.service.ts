@@ -3,13 +3,11 @@ import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore 
 import { IBook } from '../types';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { EventService } from '../shared/services/event-emitter.service';
-import { BookAllocationType } from '../types/customTypes';
 
 @Injectable()
 export class BookBoardService implements OnInit {
     booksCollection: AngularFirestoreCollection<IBook>;
-    books: Observable<IBook[]>;
+    books: IBook[];
     constructor(
         private _asfServiceReference: AngularFirestore,
         private _httpService: HttpClient
@@ -18,6 +16,12 @@ export class BookBoardService implements OnInit {
     ngOnInit(): void {
     }
 
+    /**
+     * Loading book data from services
+     * Loads details for all books.
+     * @returns {Observable<IBook[]>}
+     * @memberof BookBoardService
+     */
     loadBookData(): Observable<IBook[]> {
         this.booksCollection = this._asfServiceReference.collection('books', ref => ref.orderBy('Id'));
         return this.booksCollection.valueChanges();
@@ -53,5 +57,14 @@ export class BookBoardService implements OnInit {
 
 
     }
+    getBookDataFromStore(): IBook[] {
+
+        return this.books;
+    }
+    setBookDataToStore(books: IBook[]) {
+        console.log('book data saved in ',books);
+        this.books = books;
+    }
+
 
 }

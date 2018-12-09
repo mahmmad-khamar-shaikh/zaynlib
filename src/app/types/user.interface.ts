@@ -7,5 +7,5 @@ export interface IUser {
     Name: string;
     Group?: IGroup;
     role?: IRoles;
-    email: string;
+    Email: string;
 }

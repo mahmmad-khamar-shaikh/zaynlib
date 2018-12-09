@@ -33,6 +33,8 @@ import { environment } from '../environments/environment';
 import { database } from 'firebase';
 import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { BookBoardVanilaComponent } from './book-board/book-board-vanila.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
 
 @NgModule({
   entryComponents: [BookAllocationBottomSheetComponent],
@@ -44,10 +46,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
     DashbaordComponent,
     ManageDashboardComponent,
     BookBoardComponent,
+    BookBoardVanilaComponent,
     SignupComponent,
     UserProfileComponent,
     BookAllocationBottomSheetComponent,
-    PassRecoveryComponent
+    PassRecoveryComponent,
+    BookDetailComponent
 
 
   ],

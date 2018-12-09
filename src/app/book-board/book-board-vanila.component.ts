@@ -12,9 +12,9 @@ import { EventService } from '../shared/services/event-emitter.service';
 import { BookAllocationType } from '../types/customTypes';
 const defaultConfig = new MatBottomSheetConfig();
 @Component({
-  selector: 'app-book-board',
-  templateUrl: './book-board.component.html',
-  styleUrls: ['./book-board.component.css'],
+  selector: 'app-book-board-vanila',
+  templateUrl: './book-board-vanila.component.html',
+  styleUrls: ['./book-board-vanila.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
@@ -23,10 +23,10 @@ const defaultConfig = new MatBottomSheetConfig();
     ]),
   ],
 })
-export class BookBoardComponent implements OnInit {
+export class BookBoardVanilaComponent implements OnInit {
   public myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
-  displayedColumns: string[] = ['Id', 'title', 'isAvailable'];
+  displayedColumns: string[] = ['Id', 'Title', 'IsAvailable', 'View'];
   dataSource: MatTableDataSource<IBook>;
   expandedElement: IBook;
   bookCollection: IBook[];
@@ -47,6 +47,7 @@ export class BookBoardComponent implements OnInit {
     // this.books = this.booksCollection.valueChanges();
     this._bookBoardService.loadBookData().subscribe(data => {
       this.bookCollection = data;
+      this._bookBoardService.setBookDataToStore(data);
       this.dataSource = new MatTableDataSource(this.bookCollection);
     });
 
@@ -54,6 +55,7 @@ export class BookBoardComponent implements OnInit {
       .subscribe((payLoad: BookAllocationType) => {
         this.bookCollection.map((selectedBookItem: IBook) => {
           if (selectedBookItem.Id === payLoad.bookRefToBeAllocated) {
+            console.log('emitted item found ', selectedBookItem);
             selectedBookItem.IsAvailable = !payLoad.proceedWithAllocation;
           }
         });
