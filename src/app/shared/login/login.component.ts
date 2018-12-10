@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { User, Roles } from '../../types/customTypes';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,     // {3}
     private authService: AuthService,
-    private router: Router// {4}
+    private router: Router, // {4},
+    private _toastrService: ToastrService
   ) { }
 
   ngOnInit() {
@@ -53,12 +55,16 @@ export class LoginComponent implements OnInit {
           this.authService.loggedInUser.role.admin = false;
           this.authService.loggedInUser.role.superAdmin = false;
         }
-
+        this._toastrService.info(`Welcome ${this.authService.loggedInUser.Email} ! `
+          , 'Login Successfull', { positionClass: 'toast-top-center' });
         this.router.navigate(['/dashboard']);
         this.isError = false;
+
       })
         .catch(err => {
           console.log('err=>', err);
+          this._toastrService.error(`${err.message}`, `Failed attempt to login.`,
+           { positionClass: 'toast-top-center' });
           this.customErrorMessage = 'Username or Password incorrect.';
           this.isError = true;
         });
@@ -70,7 +76,6 @@ export class LoginComponent implements OnInit {
 
     console.log(this.form.value);
     this.authService.signinWithGoogle().then((res) => {
-      console.log('firstGot----------->', res);
       this.router.navigate(['/dashboard']);
     }
     ).catch((err) => {

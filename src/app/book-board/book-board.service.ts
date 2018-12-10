@@ -58,11 +58,9 @@ export class BookBoardService implements OnInit {
 
     }
     getBookDataFromStore(): IBook[] {
-
         return this.books;
     }
     setBookDataToStore(books: IBook[]) {
-        console.log('book data saved in ',books);
         this.books = books;
     }
 

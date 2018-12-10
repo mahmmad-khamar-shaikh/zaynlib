@@ -31,10 +31,11 @@ import { reducers, metaReducers } from './store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { database } from 'firebase';
-import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth'
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BookBoardVanilaComponent } from './book-board/book-board-vanila.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   entryComponents: [BookAllocationBottomSheetComponent],
@@ -70,7 +71,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ToastrModule.forRoot()
   ],
   providers: [AuthService, BookBoardService, EventService, AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]
