@@ -31,11 +31,15 @@ import { reducers, metaReducers } from './store/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { database } from 'firebase';
-import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BookBoardVanilaComponent } from './book-board/book-board-vanila.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
-import {ToastrModule} from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+import { CanActivateDashboardGuard } from './shared/guards/canActivateDashboard.guard';
+import { MessagingService } from './shared/services/messaging.service';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 @NgModule({
   entryComponents: [BookAllocationBottomSheetComponent],
@@ -74,7 +78,14 @@ import {ToastrModule} from 'ngx-toastr';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     ToastrModule.forRoot()
   ],
-  providers: [AuthService, BookBoardService, EventService, AngularFireAuth, AngularFirestore],
+  providers: [AuthService,
+    BookBoardService,
+    EventService,
+    AngularFireAuth,
+    AngularFirestore,
+    CanActivateDashboardGuard,
+    MessagingService, AngularFireDatabase,
+    AngularFireMessaging],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

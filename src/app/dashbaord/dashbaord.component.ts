@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/login/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { MessagingService } from '../shared/services/messaging.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-dashbaord',
@@ -10,17 +12,28 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashbaordComponent implements OnInit {
   public isAdmin = false;
+  message: BehaviorSubject<any>;
   constructor(private router: Router,
     private _authService: AuthService,
-    private _toastrService: ToastrService
+    private _toastrService: ToastrService,
+    private _pushNotificationService: MessagingService
+
   ) { }
 
   ngOnInit() {
     this.isAdmin = this._authService && this._authService.loggedInUser &&
       this._authService.loggedInUser.role && this._authService.loggedInUser.role.admin;
+
+    const userId = this._authService.loggedInUser.Email;
+    this._pushNotificationService.requestPermission(userId);
+    this._pushNotificationService.receiveMessage();
+    this.message = this._pushNotificationService.currentMessage;
+    this.message.subscribe(data => {
+      console.log('message received from serer ', data);
+    });
   }
   logout() {
-    this._toastrService.info('You are logout successfully.', 'Logout', { positionClass: 'toast-top-center' })
+    this._toastrService.info('You are logout successfully.', 'Logout', { positionClass: 'toast-top-center' });
     this.router.navigate(['']);
   }
 }

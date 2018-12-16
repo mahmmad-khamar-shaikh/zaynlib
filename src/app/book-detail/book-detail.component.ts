@@ -30,10 +30,7 @@ export class BookDetailComponent implements OnInit {
         this._toastr.info('No detail found for this book !', 'No detail found', { positionClass: 'toast-top-center' });
         this._router.navigate(['/dashboard']);
       }
-
-
-
-    });
+  });
   }
 
   goBacktoList() {
