@@ -34,7 +34,13 @@ export class MessagingService {
       () => {
         const data = {};
         data[userId] = token;
-        this.angularFireDB.object('fcmTokens/').update(data);
+        this.angularFireDB.object('fcmTokens/').update(data)
+          .then((result) => {
+            console.log('update fcm token success', result);
+          })
+          .catch(err => { console.log('error udating toke ', err); });
+      }, err => {
+        console.log('pipe ', err);
       });
   }
 
@@ -45,7 +51,7 @@ export class MessagingService {
   requestPermission(userId) {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        console.log(token);
+        console.log(`toake ${token} and userID ${userId}`);
         this.updateToken(userId, token);
       },
       (err) => {

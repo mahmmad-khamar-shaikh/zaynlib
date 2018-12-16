@@ -9,7 +9,7 @@ import { IUser } from '../../types';
 export class AuthService {
     public loggedInUser: IUser;
     user: Observable<firebase.User>;
-    private userDetails: firebase.User = null;
+    public userDetails: firebase.User = null;
     constructor(private _angularFireAuth: AngularFireAuth, private router: Router) {
         this.user = _angularFireAuth.authState;
         this.user.subscribe(

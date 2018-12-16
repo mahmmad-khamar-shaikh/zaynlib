@@ -8,4 +8,5 @@ export interface IUser {
     Group?: IGroup;
     role?: IRoles;
     Email: string;
+    FBUserId?: string;
 }

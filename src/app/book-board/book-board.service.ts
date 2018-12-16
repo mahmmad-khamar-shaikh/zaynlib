@@ -3,6 +3,8 @@ import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore 
 import { IBook } from '../types';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
+import { fromEventPattern } from 'rxjs';
 
 @Injectable()
 export class BookBoardService implements OnInit {
@@ -48,6 +50,7 @@ export class BookBoardService implements OnInit {
             filterCollection.doc(filterData[0].id).update({ ...payloadToUpload, Assignee: assignee })
                 .then((success) => {
                     console.log('record updated successfully ', success);
+                    this.sendNotificationToOwner(payloadToUpload, assignee);
                 })
                 .catch(err => {
                     console.log('Error Updating records ', err);
@@ -64,5 +67,30 @@ export class BookBoardService implements OnInit {
         this.books = books;
     }
 
+    private sendNotificationToOwner(bookUpdatePayload: IBook, assinee: string) {
 
+        const fcmOptions = {
+            method: 'POST',
+            url: 'https://fcm.googleapis.com/fcm/send',
+            // // get the key from Firebase console
+            headers: { Authorization: `key=${environment.fcmServerKey}` },
+            json: {
+                notification: {
+                    title: 'Book Allocated',
+                    body: `Book : ${bookUpdatePayload.Title} is assigned to ${assinee}`,
+                    click_action: 'https://zyanlib-ba1c6.firebaseapp.com/home'
+                },
+                // userData is where your client stored the FCM token for the given user
+                // it should be read from the database
+                to: bookUpdatePayload.Owner.Email
+            }
+        };
+        console.log('sending request for ', fcmOptions);
+        this._httpService.post(fcmOptions.url, fcmOptions.json, { headers: fcmOptions.headers }).subscribe(result => {
+            console.log('notifcation send Successfullly ');
+        }, err => {
+            console.log('notification could not be sent ', err);
+        });
+        //        return request(fcmOptions).catch(() => console.log(\`ERROR: Push failed for user ${userData.email}\`));
+    }
 }

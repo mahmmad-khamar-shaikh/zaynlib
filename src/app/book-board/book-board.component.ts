@@ -47,7 +47,9 @@ export class BookBoardComponent implements OnInit {
     // this.books = this.booksCollection.valueChanges();
     this._bookBoardService.loadBookData().subscribe(data => {
       this.bookCollection = data;
+      console.log('book data arrived ', this.bookCollection);
       this.dataSource = new MatTableDataSource(this.bookCollection);
+
     });
 
     this._bookAllocationEventServiceRef.bookAllocationService

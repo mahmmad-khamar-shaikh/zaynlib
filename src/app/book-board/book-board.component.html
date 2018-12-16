@@ -21,6 +21,7 @@
       <th mat-header-cell *matHeaderCellDef> Available </th>
       <td mat-cell *matCellDef="let element">
         <mat-slide-toggle class="example-margin"
+        {{element.IsAvailable}}
          color="green" [(ngModel)]="element.IsAvailable"  (change)="onChange($event,element)"
           [disabled]="!element.IsAvailable">
         </mat-slide-toggle>
